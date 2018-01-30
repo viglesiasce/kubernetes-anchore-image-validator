@@ -60,9 +60,9 @@ func getStatus(digest string, tag string) bool {
 	return result[0][digest][resultIndex][0].Status == "pass"
 }
 
-func getImage(repo string) (Image, error) {
+func getImage(imageRef string) (Image, error) {
 	// Tag or repo??
-	params := map[string]string{"tag": repo}
+	params := map[string]string{"tag": imageRef}
 	body, err := anchoreRequest("/v1/images?history=false", params, "GET")
 	if err != nil {
 		return Image{}, err
@@ -75,8 +75,8 @@ func getImage(repo string) (Image, error) {
 
 	return images[0], nil
 }
-func getImageDigest(repo string) (string, error) {
-	image, err := getImage(repo)
+func getImageDigest(imageRef string) (string, error) {
+	image, err := getImage(imageRef)
 	if err != nil {
 		return "", fmt.Errorf("failed to get image digest: %v", err)
 	}
