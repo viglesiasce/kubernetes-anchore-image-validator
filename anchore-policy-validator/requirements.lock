@@ -1,0 +1,6 @@
+dependencies:
+- name: anchore-engine
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.1.1
+digest: sha256:b87d17f367a89fd354476216786f9d757952f8e2262e470f278cc544e2fbd297
+generated: 2018-01-29T15:05:06.578988266-08:00
