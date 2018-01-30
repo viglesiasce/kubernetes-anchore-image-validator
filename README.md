@@ -20,6 +20,20 @@ and scanned. The default policy validates that there are no critical security vu
 
 1. [Install Helm](https://github.com/kubernetes/helm/blob/master/docs/install.md)
 
-1. Run hack/install.sh
+1. Run `hack/install.sh` which installs the [chart](anchore-policy-validator) for the server.
 
 1. Follow the instructions output by the chart installation for installing the validating web hook.
+
+## How does it work?
+
+This server leverages the [Generic Admission Server](https://github.com/openshift/generic-admission-server)
+for most of the heavy lifting of implementing the admission webhook API.
+
+The binary from this repository is registered as an [API Service](https://kubernetes.io/docs/tasks/access-kubernetes-api/setup-extension-api-server/)
+and run inside of Kubernetes. Once the service is registered, a ValidatingWebhookConfiguration is created
+that tells the Kubernetes API server to check with the admission server before running any pods in the local cluster.
+
+The admission server receives a request that includes the Pod specification. It takes the images from the list of containers
+then sends requests to the [Anchore Engine API](https://app.swaggerhub.com/apis/anchore/anchore-engine/0.1.0) to ensure 
+that the [images are passing the evaluation](https://github.com/anchore/anchore-engine/wiki/Evaluating-Images-against-Policies)
+of the [policy defined in Anchore Engine](https://github.com/anchore/anchore-engine/wiki/Working-with-Policies).
