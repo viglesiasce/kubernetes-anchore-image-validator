@@ -14,7 +14,7 @@ This repository contains a server that can be used as a [Validating Webhook](htt
 in your Kubernetes cluster. After its been configured, Kubernetes will send a request to this server any time a Pod is requested.
 The server will get container images out of the PodSpec and check them against the Anchore Engine API to see if they
 adhere to the policy that has been defined. If the image does not yet exist in Anchore Engine it will automatically be added
-and scanned. The default policy validates that there are no critical security vulnerabilities in the image.
+and scanned. The [default policy](anchore-policy-validator/templates/default-policy/configmap.yaml) validates that there are no critical security vulnerabilities in the image.
 
 ## Quick Start
 
