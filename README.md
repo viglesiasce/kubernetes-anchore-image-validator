@@ -18,6 +18,14 @@ and scanned. The [default policy](anchore-policy-validator/templates/default-pol
 
 ## Quick Start
 
+### NOTE: Kubernetes 1.9+ Required.
+
+1. Add yourself as a Cluster Admin:
+
+    ```shell
+    kubectl create clusterrolebinding cluster-admin-$USER --username=<your-username> --clusterrole=cluster-admin
+    ```
+
 1. [Install Helm](https://github.com/kubernetes/helm/blob/master/docs/install.md)
 
 1. Run `hack/install.sh` which installs the [chart](anchore-policy-validator) for the server.
