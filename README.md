@@ -42,6 +42,6 @@ and run inside of Kubernetes. Once the service is registered, a ValidatingWebhoo
 that tells the Kubernetes API server to check with the admission server before running any pods in the local cluster.
 
 The admission server receives a request that includes the Pod specification. It takes the images from the list of containers
-then sends requests to the [Anchore Engine API](https://app.swaggerhub.com/apis/anchore/anchore-engine/0.1.0) to ensure 
+then sends requests to the [Anchore Engine API](https://app.swaggerhub.com/apis/anchore/anchore-engine/0.1.3) to ensure 
 that the [images are passing the evaluation](https://github.com/anchore/anchore-engine/wiki/Evaluating-Images-against-Policies)
 of the [policy defined in Anchore Engine](https://github.com/anchore/anchore-engine/wiki/Working-with-Policies).
