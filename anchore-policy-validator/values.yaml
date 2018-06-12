@@ -13,7 +13,8 @@ service:
   internalPort: 443
 anchore-engine:
   enabled: true
-  users:
-    admin:
-      password: image-validator
+  globalConfig:
+    users:
+      admin:
+        password: image-validator
 resources: {}
