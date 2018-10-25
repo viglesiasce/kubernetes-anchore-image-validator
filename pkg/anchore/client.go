@@ -104,11 +104,6 @@ func AddImage(image string) error {
 }
 
 func CheckImage(image string) bool {
-	//imageParts := strings.Split(image, ":")
-	//tag := "latest"
-	//if len(imageParts) > 1 {
-	//	tag = imageParts[1]
-	//}
 	digest, err := getImageDigest(image)
 	if err != nil {
 		AddImage(image)
