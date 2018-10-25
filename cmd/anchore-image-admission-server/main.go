@@ -2,12 +2,12 @@ package main
 
 import (
 	"sync"
-
 	"encoding/json"
 	"fmt"
 	"github.com/golang/glog"
 	"github.com/openshift/generic-admission-server/pkg/cmd"
 	"github.com/viglesiasce/anchore-image-admission-server/pkg/anchore"
+	// Testing Only: "github.com/viglesiasce/kubernetes-anchore-image-validator/pkg/anchore"
 	admissionv1beta1 "k8s.io/api/admission/v1beta1"
 	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
