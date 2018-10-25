@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"reflect"
 	"strings"
 )
 
@@ -55,9 +56,18 @@ func getStatus(digest string, tag string) bool {
 		return false
 	}
 
+	foundStatus := FindResult(result)
+
 	// Is this the easiest way to get this info?
-	resultIndex := fmt.Sprintf("docker.io/%s:latest", tag)
-	return result[0][digest][resultIndex][0].Status == "pass"
+	return strings.ToLower(foundStatus) == "pass"
+}
+
+func FindResult(parsed_result []map[string]map[string][]SHAResult) string {
+	//Looks thru a parsed result for the status value, assumes this result is for a single image
+
+	digest := reflect.ValueOf(parsed_result[0]).MapKeys()[0].String()
+	tag := reflect.ValueOf(parsed_result[0][digest]).MapKeys()[0].String()
+	return parsed_result[0][digest][tag][0].Status
 }
 
 func getImage(imageRef string) (Image, error) {
@@ -94,15 +104,10 @@ func AddImage(image string) error {
 }
 
 func CheckImage(image string) bool {
-	imageParts := strings.Split(image, ":")
-	tag := "latest"
-	if len(imageParts) > 1 {
-		tag = imageParts[1]
-	}
 	digest, err := getImageDigest(image)
 	if err != nil {
 		AddImage(image)
 		return false
 	}
-	return getStatus(digest, tag)
+	return getStatus(digest, image)
 }
