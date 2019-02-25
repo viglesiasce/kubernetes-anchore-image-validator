@@ -1,5 +1,6 @@
 # Anchore Image Validator for Kubernetes
 
+## This repo has been deprecated in favor of https://github.com/anchore/kubernetes-admission-controller
 ## THIS IS NOT AN OFFICIAL GOOGLE PRODUCT
 
 ## Intro
